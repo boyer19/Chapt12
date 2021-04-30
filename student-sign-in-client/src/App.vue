@@ -41,7 +41,9 @@ export default {
       })
     },
     newStudentAdded(student) {
-     
+      this.$student_api.addStudent(student).then( () => {
+        this.updateStudents()
+      })
     },
     studentArrivedOrLeft(student, present) {
       

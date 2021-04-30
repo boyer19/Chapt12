@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 
-let base_url = '/api/student'
+let base_url = '/api/students'
 
 export default {
     getAllStudents() {
