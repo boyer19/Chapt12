@@ -46,9 +46,17 @@ export default {
       })
     },
     studentArrivedOrLeft(student, present) {
-      
+      student.present = present //update present value
+      this.$student_api.updateStudent(student).then( () => {
+        this.mostRecentStudent = student
+        this.updateStudents()
+      })
     },
-    studentDeleted(student) {  
+    studentDeleted(student) {
+       this.$student_api.deleteStudent(student.id).then( () =>{
+         this.updateStudents()
+         this.mostRecentStudent = {} // clear welcome/goodbye message
+       }) 
     }
   }
 }

@@ -16,4 +16,25 @@ router.post('/students/', function(req, res, next){              // .post used t
     })
 })
 
+// to do edit a student
+router.patch('/students/:id', function(req, res, next){
+    // if request is to /student/100
+    // studentID will be 100
+    let studentID = req.params.id
+    let updatedStudent = req.body
+    Student.update( updatedStudent, { where: { id: studentID} })
+    .then( () => {
+        return res.send('OK')
+    })
+})
+
+router.delete('/students/:id', function(req, res, next){
+    let studentID = req.params.id
+    Student.destroy( {where: { id: studentID } } )
+        .then( () => {
+            return res.send('OK, Deleted')
+        })
+})
+// to do deletes student
 module.exports = router
+// don;t write code here - it will be ignored

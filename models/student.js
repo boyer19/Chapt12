@@ -2,11 +2,16 @@ module.exports = (sequelize, DataTypes) => {
 
     let Student = sequelize.define('Student', {
         name: {
-            type: DataTypes.STRING,  
+            type: DataTypes.STRING, 
+            allowNull: false                        // Prevents Database data to be empty
         }, starID: {
             type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
         }, present: {
             type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
         }
     })
 
