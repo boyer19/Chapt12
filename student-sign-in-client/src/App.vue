@@ -38,11 +38,15 @@ export default {
     updateStudents() {
       this.$student_api.getAllStudents().then( students => {
         this.students = students
-      })
+      }).catch( () => alert('Unable to fetch student list'))
     },
     newStudentAdded(student) {
       this.$student_api.addStudent(student).then( () => {
         this.updateStudents()
+      })
+      .catch( err => {
+        let msg = err.response.data.join(',')
+        alert('Error adding student\n' + msg)
       })
     },
     studentArrivedOrLeft(student, present) {
@@ -50,13 +54,13 @@ export default {
       this.$student_api.updateStudent(student).then( () => {
         this.mostRecentStudent = student
         this.updateStudents()
-      })
+      }).catch( () => alert('Unable to update student'))
     },
     studentDeleted(student) {
        this.$student_api.deleteStudent(student.id).then( () =>{
          this.updateStudents()
          this.mostRecentStudent = {} // clear welcome/goodbye message
-       }) 
+       }).catch( () => alert('Unable to delete student'))
     }
   }
 }

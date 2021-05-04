@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         }, starID: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+            unique: true                        // Will not allow duplicate starID
         }, present: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
